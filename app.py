@@ -89,7 +89,7 @@ if uploaded_file is not None:
 
                 for element in results_describe.keys():
                     st.markdown(f"**Cluster {element}**")
-                    st.markdown(results_describe[element].replace(".", ".\n"))
+                    st.markdown(results_describe[element].replace(".", ".\n").replace(":", ":\n"))
                     st.write("\n")
 
         csv_output = convert_df(results)
