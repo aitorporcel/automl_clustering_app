@@ -30,11 +30,17 @@ with c1:
     optimize_model = st.selectbox("Optimize model", ["Yes", "No"], index=1, help="Select whether the model should use the default values (No) or try to find parameters that generate more differentiated clusters (Yes).")
     optimize_model = optimize_model == "Yes"
 with c2:
-    describe_clusters = st.selectbox("Describe clusters", ["Yes", "No"], index=1, help="Indicate if you want to generate automatic descriptions of the different clusters found. If the number of clusters is too large, it may be difficult to read.")
+    describe_clusters = st.selectbox("Describe clusters", ["Yes", "No"], index=0, help="Indicate if you want to generate automatic descriptions of the different clusters found. If the number of clusters is too large, it may be difficult to read.")
     describe_clusters = describe_clusters == "Yes"
 
 if uploaded_file is not None:
-    df = pd.read_csv(uploaded_file)
+    if "csv" in uploaded_file.name:
+        df = pd.read_csv(uploaded_file)
+    elif "xls" in uploaded_file.name:
+        df = pd.read_excel(uploaded_file)
+    else:
+        st.write("Only csv or xls files are supported. Upload a file with one of these extensions to continue.")
+        st.stop()
 
     with st.expander("Show uploaded data"):
         st.dataframe(df.head())
