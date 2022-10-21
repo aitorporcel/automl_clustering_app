@@ -153,6 +153,7 @@ if uploaded_file is not None:
             mime='text/csv',
         )
         
+st.markdown("""---""")
+st.write("Do you have feedback? Please send me a message on [LinkedIn](https://www.linkedin.com/in/aitorporcellaburu/).")
 
-        
 
